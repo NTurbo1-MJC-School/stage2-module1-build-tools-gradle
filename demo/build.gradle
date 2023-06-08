@@ -1,4 +1,41 @@
 //add everything here
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.example'
+            artifactId = 'demo'
+            version = '1.0.0'
+            from components.java
+        }
+    }
+}
+
+dependencies {
+    api(project(":utils"))
+    implementation 'org.apache.commons:commons-lang3:3.10'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'Demo',
+                'Implementation-Version': '1.0.0'
+        )
+    }
+}
 
 test {
     useJUnitPlatform()
