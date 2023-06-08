@@ -3,22 +3,16 @@ package com.epam.utils;
 public class StringUtils {
     public static boolean isPositiveNumber(String str) {
          //here magic will happen
-        if (str == null) {
+
+        if (str == null || str.isEmpty() || str.startsWith("0")) {
             return false;
         }
 
-        double x = 0.0;
-
         try {
-            x = Double.parseDouble(str);
+            double number = Double.parseDouble(str);
+            return number > 0;
         } catch (NumberFormatException e) {
             return false;
         }
-
-        if (x > 0.0) {
-            return true;
-        }
-
-        return false;
     }
 }
